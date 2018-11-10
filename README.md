@@ -16,7 +16,7 @@
 
 | Todo   | Status | Responsavel |
 | ------ | :----: | :---------: |
-| Login  |   🛑   |             |
+| Login  |   ⚙️   |   Adriel    |
 | Logout |   🛑   |             |
 
 # Cliente
