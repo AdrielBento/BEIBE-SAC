@@ -5,6 +5,10 @@ public class Resposta {
 	private String mensagem;
 	private Boolean status;
 	private String error;
+	private Object data;
+	
+	public Resposta() {	
+	}
 	
 	public Resposta(String msg,Boolean status,String error) {
 		this.error = error;
@@ -17,6 +21,14 @@ public class Resposta {
 		this.status = status;
 	}
 	
+	public Resposta(Boolean status) {			
+		this.status = status;
+	}
+	
+	public Resposta(Boolean status,Object data) {			
+		this.status = status;
+		this.data = data;
+	}
 	
 	public String getMensagem() {
 		return mensagem;

@@ -17,8 +17,7 @@ public class LoginFacade {
 			
 			Usuario user = new Usuario();
 			user.setEmail(String.valueOf(req.getParameter("email")));
-			String criptaSenha = Utils.encrypt(String.valueOf(req.getParameter("senha")));	
-			String criptSenha = String.valueOf(req.getParameter("senha"));
+			String criptSenha = Utils.encrypt(String.valueOf(req.getParameter("senha")));	
 			user.setSenha(criptSenha);
 			
 			return UsuarioDao.getUsuarioLogin(user);

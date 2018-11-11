@@ -24,38 +24,41 @@ import facades.LoginFacade;
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		 resp.setContentType("text/html;charset=UTF-8");		 
-		 HttpSession session = req.getSession(true);
-		 
-		 try {
-			 
-		    Usuario user = LoginFacade.loginIn(req);         		    
-	    	
-		    if(user == null) {
-	    		throw new Exception("Usuario não encontrado");
-	    	};
-	    	
-		    Login lb = new Login();			
-	        lb.setId(user.getId());
-            lb.setNome(user.getNome());
-            
-	     	session.setAttribute("login", lb);
-	     	req.getRequestDispatcher("index.jsp").forward(req,resp);            
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		 }catch (Exception e) {
-		 
-			String json = new Gson().toJson(new Resposta(e.getMessage(),false));			
+		resp.setContentType("text/html;charset=UTF-8");
+		HttpSession session = req.getSession(true);
+		String json = "";
+
+		try {
+
+			Usuario user = LoginFacade.loginIn(req);
+
+			if (user == null) {
+				throw new Exception("Usuario não encontrado");
+			}
+			
+
+			Login lb = new Login();
+			lb.setId(user.getId());
+			lb.setNome(user.getNome());
+
+			session.setAttribute("login", lb);
+
+			json = new Gson().toJson(new Resposta(true));
+
+		} catch (Exception e) {
+
+			json = new Gson().toJson(new Resposta(e.getMessage(), false));
+
+		} finally {
+
 			resp.setContentType("application/json");
-		    resp.setCharacterEncoding("UTF-8");
-		    resp.getWriter().write(json);
-		 } 
+			resp.setCharacterEncoding("UTF-8");
+			resp.getWriter().write(json);
+		}
 	}
-
-
-
 
 }

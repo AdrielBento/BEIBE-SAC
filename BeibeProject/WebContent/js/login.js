@@ -1,62 +1,53 @@
-$("#loginIn").click(function (e) {
+$("#loginIn").click(function(e) {
+  e.preventDefault();
 
-    e.preventDefault();
+  let email = $("#inputEmail").val();
+  let senha = $("#inputSenha").val();
 
-    let email = $("#inputEmail").val();
-    let senha = $("#inputSenha").val();
+  $.ajax({
+    method: "POST",
+    url: "LoginServlet",
+    data: {
+      senha,
+      email
+    },
+    dataType: "json"
+  })
+    .done(function(res) {
+      if (!res.status) {
+        $("#inputEmail").addClass("is-invalid");
+        $("#inputSenha").addClass("is-invalid");
+      } else {
+        $("#inputEmail").removeClass("is-invalid");
+        $("#inputSenha").removeClass("is-invalid");
+      }
 
-
-    $.ajax({
-        method: "POST",
-        url: "LoginServlet",
-        data: {
-            senha,
-            email
-        },
-        dataType: "json",
-
-    }).done(function (res) {
-
-        if (res.status) {
-            $(email).addClass("is-invalid");
-            $(senha).addClass("is-invalid");
-
-        } else {
-            $(email).removeClass("is-invalid");
-            $(senha).removeClass("is-invalid");
-        }
-
-        console.log(res);
-
-    }).fail(function (jqXHR, textStatus) {
-        console.error(jqXHR, textStatus);
+      console.log(res);
+    })
+    .fail(function(jqXHR, textStatus) {
+      console.error(jqXHR, textStatus);
     });
-
-
 });
 
-
 var Usuarios = (() => {
-    return {
-        teste: () => {
-            console.log("beibe");
-        }
+  return {
+    teste: () => {
+      console.log("beibe");
     }
+  };
 })();
 
+var contador = (function() {
+  var placar = 0;
 
-var contador = (function () {
+  function muda() {
+    placar++;
+    console.log("aumentou", placar);
+  }
 
-    var placar = 0;
-
-    function muda() {
-        placar++;
-        console.log("aumentou", placar);
+  return {
+    aumenta: function() {
+      muda();
     }
-
-    return {
-        aumenta: function () {
-            muda();
-        }
-    }
+  };
 })();
