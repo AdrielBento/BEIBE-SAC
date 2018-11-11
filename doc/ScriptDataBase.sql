@@ -23,7 +23,7 @@ create table tb_endereco(
     rua varchar(100),
     numero varchar(10),
     complemento varchar(255),
-    bairro varchar(11),
+    bairro varchar(50),
     cep varchar(11),
     idCidade integer,
     foreign key (idCidade) references tb_cidade(id)
@@ -44,6 +44,20 @@ create table tb_usuario(
 );
 
 insert into tb_usuario(nome,cpf,email,telefone,senha,tipoPerfil) values('Admin','08093140964','admin@gmail.com','4195248371','admin','G');
+
+INSERT INTO beibe.tb_estado (id,nome,UF) 
+SELECT id_estado,nome_estado,sigla_estado
+FROM `javaweb`.`tb_estado`;
+SELECT * FROM beibe.tb_usuario;
+
+INSERT INTO beibe.tb_cidade (id,nome,idEstado) 
+SELECT id_cidade,nome_cidade,id_estado
+FROM `javaweb`.`tb_cidade`;
+
+SELECT * FROM beibe.tb_usuario;
+
+
+
 
 
 

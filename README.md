@@ -16,14 +16,14 @@
 
 | Todo   | Status | Responsavel |
 | ------ | :----: | :---------: |
-| Login  |   ⚙️   |   Adriel    |
+| Login  |  ✔️ ️  |   Adriel    |
 | Logout |   🛑   |             |
 
 # Cliente
 
 | Todo                      | Status | Responsavel |
 | ------------------------- | :----: | :---------: |
-| Cadastro de Cliente       |   🛑   |             |
+| Cadastro de Cliente       |   ⚙️   |   Adriel    |
 | Edicao do Dados           |   🛑   |             |
 | Listar Atendimentos       |   🛑   |             |
 | Visualizao do atendimento |   🛑   |             |
