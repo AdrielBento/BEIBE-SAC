@@ -11,6 +11,11 @@ public class Estado implements Serializable{
 	public Estado() {};
 	
 	
+	public Estado(int id) {
+		this.id = id;
+	}
+
+
 	public Integer getId() {
 		return id;
 	}

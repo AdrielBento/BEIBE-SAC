@@ -11,14 +11,25 @@ public class Usuario implements Serializable {
 	private String telefone;
 	private String senha;
 	private Endereco endereco;
-	private char tipo;
+	private String tipo;
 
 
 	public Usuario() {
 		
 	};	
 	
+			
+	public Usuario(String nome, String cpf, String email, String telefone, String senha, Endereco endereco, String tipo) {
 		
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.telefone = telefone;
+		this.senha = senha;
+		this.endereco = endereco;
+		this.tipo = tipo;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -75,11 +86,11 @@ public class Usuario implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public char getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(char tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
