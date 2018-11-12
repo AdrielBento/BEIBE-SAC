@@ -13,6 +13,7 @@ public class UsuarioDao {
 
 	private final static String addUsuarioQuery = "insert into tb_usuario(nome,cpf,email,telefone,senha,tipoPerfil,idEndereco)values(?,?,?,?,?,?,?)";
 	private final static String addEnderecoQuery ="insert into tb_endereco(rua,numero,complemento,bairro,cep,idCidade) values(?,?,?,?,?,?) ";
+	
 	public static Usuario getUsuarioLogin(Usuario user) throws ErroGetUsuarioLogin {
 
 		PreparedStatement st = null;
@@ -83,7 +84,7 @@ public class UsuarioDao {
 			if (st != null) {
 				try {
 					st.close();
-				} catch (Exception e) {
+					} catch (Exception e) {
 				}
 			}
 		}

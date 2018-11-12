@@ -14,7 +14,7 @@ import exceptions.ErroGetAtendimentos;
 
 public class CategoriaDao {
 
-	public static List<Categoria> getCategoria() throws Exception {
+	public static List<Categoria> getCategorias() throws Exception {
 
 		PreparedStatement st = null;
 		List<Categoria> listCategoria = null;
