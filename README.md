@@ -23,11 +23,11 @@
 
 | Todo                      | Status | Responsavel |
 | ------------------------- | :----: | :---------: |
-| Cadastro de Cliente       |   ⚙️   |   Adriel    |
+| Cadastro de Cliente       |   ✔️   |   Adriel    |
 | Edicao do Dados           |   🛑   |             |
-| Listar Atendimentos       |   🛑   |             |
+| Listar Atendimentos       |   ⚙️   |   Adriel    |
 | Visualizao do atendimento |   🛑   |             |
-| Criacao de atendimento    |   🛑   |             |
+| Criacao de atendimento    |   ⚙️   |   Adriel    |
 
 # Funcionario
 
