@@ -46,8 +46,8 @@ public class LoginServlet extends HttpServlet {
 			lb.setNome(user.getNome());
 
 			session.setAttribute("login", lb);
-
-			json = new Gson().toJson(new Resposta(true));
+			
+//			json = new Gson().toJson(new Resposta(true));
 
 		} catch (Exception e) {
 
