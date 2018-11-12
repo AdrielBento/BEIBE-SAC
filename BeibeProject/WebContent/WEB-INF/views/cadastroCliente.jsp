@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <c:import url="/head.jsp" />
+    <c:import url="pages/head.jsp" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 </head>
@@ -90,7 +90,7 @@
          </form>
     </div>
 </body>
-<c:import url="/scripts.jsp" />
+<c:import url="pages/scripts.jsp" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 <script src="js/cadastroCliente.js"></script>

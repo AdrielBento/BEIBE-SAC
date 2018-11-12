@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
 
   <title>Login</title>
-  <c:import url="/head.jsp"/>
+  <c:import url="head.jsp"/>
   <link rel="stylesheet" href="styles/login.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
