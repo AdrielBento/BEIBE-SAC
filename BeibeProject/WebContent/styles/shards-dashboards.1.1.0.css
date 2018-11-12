@@ -4253,7 +4253,7 @@ a.text-accent:hover, a.text-accent:focus {
     padding: 0.9375rem 1.5625rem; }
     .main-sidebar .nav .nav-item .nav-link i {
       min-width: 1.25rem;
-      font-size: 90%;
+      /* font-size: 90%; */
       text-align: center;
       vertical-align: middle;
       will-change: color;
