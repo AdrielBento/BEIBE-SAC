@@ -20,7 +20,7 @@ import beans.Produto;
 import classes.Resposta;
 import dao.AtendimentoDao;
 import dao.ProdutoDao;
-import facade.AtendimentoFacade;
+import facades.AtendimentoFacade;
 
 /**
  * Servlet implementation class Atendimento
@@ -86,11 +86,37 @@ public class AtendimentoServlet extends HttpServlet {
 			break;
 
 		case "viewAtendimento":
+			
+			try {
+				
+				Integer id  = Integer.parseInt(req.getParameter("id"));
+				List<Produto> listProdutos = ProdutoDao.getProdutos();		
+				Atendimento atendimento = AtendimentoDao.getAtendimento(id);
+				req.setAttribute("produtos", listProdutos);
 
+			} catch (Exception e) {
+				req.setAttribute("javax.servlet.jsp.jspException", e);
+//	             request.setAttribute("msg", "Erro ao listar os cliente");
+//	             request.setAttribute("page", "http://localhost:8080/MeuTADS/ClienteServlet");
+				req.setAttribute("javax.servlet.error.status_code", 500);
+				path = "/WEB-INF/views/erro.jsp";
+			}
 			break;
 
-		case "removeAtendimentos":
-
+		case "removeAtendimento":
+			
+			try {
+				
+				Integer id  = Integer.parseInt(req.getParameter("id"));
+				AtendimentoDao.remove(id);
+				json = new Gson().toJson(new Resposta(true));
+			} catch (Exception e) {
+				json = new Gson().toJson(new Resposta(e.getMessage(), false));
+			} finally {
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("UTF-8");
+				resp.getWriter().write(json);
+			}
 			break;
 		}
 		

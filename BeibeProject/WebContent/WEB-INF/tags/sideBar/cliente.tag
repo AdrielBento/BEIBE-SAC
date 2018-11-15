@@ -35,13 +35,13 @@
       <li class="nav-item">
         <c:choose>
           <c:when test="${id == 2}">
-            <a class="nav-link active " href="components-blog-posts.html">
+            <a class="nav-link active " href="Atendimento?action=getAtendimentos">
              <i class="fas fa-headset"></i> 
               <span>Atendimentos</span>
             </a>
           </c:when>
           <c:otherwise>
-              <a class="nav-link " href="components-blog-posts.html">
+              <a class="nav-link " href="Atendimento?action=getAtendimentos">
                 <i class="fas fa-headset fa-lg"></i>
                 <span>Atendimentos</span>
               </a>
@@ -52,13 +52,13 @@
       <li class="nav-item">
         <c:choose>
           <c:when test="${id == 3}">
-            <a class="nav-link active " href="components-blog-posts.html">
+            <a class="nav-link active " href="Atendimento?action=formAtendimento">
               <i class="material-icons">vertical_split</i>
               <span>Criar Atendimento</span>
             </a>
           </c:when>
           <c:otherwise>
-            <a class="nav-link " href="components-blog-posts.html">
+            <a class="nav-link " href="Atendimento?action=formAtendimento">
               <i class="material-icons">vertical_split</i>
               <span>Criar Atendimento</span>
             </a>
