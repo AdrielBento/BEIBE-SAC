@@ -17,7 +17,7 @@ public class CategoriaDao {
 	public static List<Categoria> getCategorias() throws Exception {
 
 		PreparedStatement st = null;
-		List<Categoria> listCategoria = null;
+		List<Categoria> listCategoria = new ArrayList();
 
 		try (Connection con = ConnectionFactory.getConnection()) {
 
@@ -25,10 +25,10 @@ public class CategoriaDao {
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
-				Categoria ca = new Categoria();
-				listCategoria = new ArrayList();
+				Categoria ca = new Categoria();			
 				ca.setId(rs.getInt("id"));
 				ca.setNome(rs.getString("nome"));
+				listCategoria.add(ca);
 			}
 
 			return listCategoria;
@@ -46,7 +46,7 @@ public class CategoriaDao {
 		}
 	}
 	
-	public static void addCategoria(Categoria c) throws ErroAddCategoria {
+	public static Categoria addCategoria(Categoria c) throws ErroAddCategoria {
 		PreparedStatement st = null;
 
 		try (Connection con = ConnectionFactory.getConnection()) {			
@@ -60,6 +60,10 @@ public class CategoriaDao {
 
 			if (!rs.next()) {
 				throw new ErroAddCategoria("A categoria não foi inserido");
+			}else {
+				
+				Categoria ca = new Categoria(rs.getInt(1),c.getNome());
+				return ca;
 			}
 			
 		} catch (Exception e) {
@@ -75,4 +79,54 @@ public class CategoriaDao {
 		}
 		
 	}
+	
+	public static void removeCategoria(Integer id) throws Exception {
+
+		PreparedStatement st = null;
+
+		try (Connection con = ConnectionFactory.getConnection()) {
+
+			st = con.prepareStatement("DELETE FROM tb_categoria where id = ?");
+			st.setInt(1,id);
+			st.executeUpdate();			
+			
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		} finally {
+
+			if (st != null) {
+				try {
+					st.close();
+				} catch (Exception e) {
+				}
+			}
+		}
+	}
+	
+	public static void updateCategoria(Categoria c) throws Exception {
+		PreparedStatement st = null;
+
+		try (Connection con = ConnectionFactory.getConnection()) {			
+			
+		
+			st = con.prepareStatement("update tb_categoria SET nome = ? WHERE id = ?", PreparedStatement.RETURN_GENERATED_KEYS);					
+			st.setString(1,c.getNome());
+			st.setInt(2,c.getId());
+			st.executeUpdate();
+
+		
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		} finally {
+
+			if (st != null) {
+				try {
+					st.close();
+				} catch (Exception e) {
+				}
+			}
+		}
+		
+	}
+
 }

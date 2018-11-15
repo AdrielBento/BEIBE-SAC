@@ -15,8 +15,8 @@
                 <strong>Message:</strong> ${pageContext.exception.message}<br>
                 <strong>URL:</strong>${pageContext.errorData.requestURI} <br>
                 <strong> StackTrace:</strong>
-                <p>${pageContext.out.flush()}</p>
-                <p>${pageContext.exception.printStackTrace(pageContext.response.writer)}</p>
+                <%-- <p>${pageContext.out.flush()}</p> --%>
+                <%-- <p>${pageContext.exception.printStackTrace(pageContext.response.writer)}</p> --%>
             </div>
         </div>  
     </body>

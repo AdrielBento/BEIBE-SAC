@@ -12,6 +12,21 @@ public class Produto implements Serializable {
 	
 	public Produto() {};
 	
+	public Produto(String nome, String descricao, String peso, Categoria categoria) {
+		this.nome = nome;
+		this.descricao = descricao;
+		this.peso = peso;
+		this.categoria = categoria;
+	}
+
+	public Produto(Integer id, String nome, String descricao, String peso, Categoria categoria) {
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.peso = peso;
+		this.categoria = categoria;
+	}
+
 	public Integer getId() {
 		return id;
 	}

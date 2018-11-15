@@ -9,7 +9,7 @@ public class ConnectionFactory {
     	
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost/beibe?verifyServerCertificate=false&useSSL=false";
+            String url = "jdbc:mysql://localhost/beibe?verifyServerCertificate=false&useSSL=false&useAffectedRows=true";
             String login = "root";
             String senha = "rootadmin";
             Properties properties = new Properties();

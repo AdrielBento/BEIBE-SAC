@@ -56,3 +56,7 @@
 | Relatório Listagem Atendimentos em Aberto        |   🛑   |             |
 | Relatorio de Atendimentos em Aberto por Data     |   🛑   |             |
 | Relatorio de Reclamcoes                          |   🛑   |             |
+
+# Detalhes
+
+- Excluir produtos ao deletar um categoria
