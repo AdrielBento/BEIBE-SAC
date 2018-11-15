@@ -8,20 +8,15 @@ import exceptions.ErroAddCategoria;
 
 public class CategoriaFacade {
 
-		public static Categoria addCategoria(Categoria categoria) throws ErroAddCategoria {
-		// verify if category is a valid record
-		//
-		// if(categoria.getName().isEmpty()){
-		//	 throw new Exception("Category's name can't be blank. Are you kiding me?!")
-		// }
-		
+	public static Categoria addCategoria(Categoria categoria) throws ErroAddCategoria {		
 		return CategoriaDao.addCategoria(categoria);
 	}
 
-	public static void updateCategoria(ServletRequest req) throws Exception {
-		String nome = String.valueOf(req.getParameter("nomeCategoria"));
-		Integer id = Integer.parseInt(req.getParameter("id"));
-		CategoriaDao.updateCategoria(new Categoria(id,nome));		
+	public static void updateCategoria(Categoria categoria) throws Exception {
+		CategoriaDao.updateCategoria(categoria);		
 	}
-	
+
+	public static void removeCategoria(Categoria categoria) throws Exception {
+		CategoriaDao.removeCategoria(categoria);				
+	}
 }

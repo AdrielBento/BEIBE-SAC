@@ -75,12 +75,16 @@ public class CategoriaServlet extends HttpServlet {
 
 		case "removeCategoria":
 			try {
-
 				Integer id = Integer.parseInt(req.getParameter("id"));
-				CategoriaDao.removeCategoria(id);
+				
+				Categoria categoria = new Categoria(id)
+				CategoriaFacade.removeCategoria(categoria);
+				
 				json = new Gson().toJson(new Resposta(true));
+				
 			} catch (Exception e) {
 				json = new Gson().toJson(new Resposta(e.getMessage(), false));
+
 			} finally {
 				resp.setContentType("application/json");
 				resp.setCharacterEncoding("UTF-8");
@@ -91,10 +95,17 @@ public class CategoriaServlet extends HttpServlet {
 		case "updateCategoria":
 
 			try {
-				CategoriaFacade.updateCategoria(req);
+				String nome = String.valueOf(req.getParameter("nomeCategoria"));
+				Integer id = Integer.parseInt(req.getParameter("id"));
+				
+				Categoria categoria = new Categoria(id, nome);
+				CategoriaFacade.updateCategoria(categoria);
+
 				json = new Gson().toJson(new Resposta(true));
+		
 			} catch (Exception e) {
 				json = new Gson().toJson(new Resposta(e.getMessage(), false));
+			
 			} finally {
 				resp.setContentType("application/json");
 				resp.setCharacterEncoding("UTF-8");
