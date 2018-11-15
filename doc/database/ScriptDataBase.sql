@@ -63,7 +63,7 @@ create table tb_atendimento(
     idTipoAtendimento integer,
     idProduto integer,
     idUsuario integer,    
-    foreign key (idTipoAtendimento) references tb_tipoAtendimento(id),
+    foreign key (idTipoAtendimento) references tb_tipoAendimento(id),
     foreign key (idProduto) references tb_produto(id),
     foreign key (idUsuario) references tb_usuario(id)
 );

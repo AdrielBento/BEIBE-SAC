@@ -83,11 +83,11 @@
                             <div class="form-row">                       
                               <div class="form-group col-md-6">
                                 <label for="feFirstName">Nome</label>
-                                <input type="text" class="form-control" id="nome" name="nome" placeholder="nome">
+                                <input type="text" class="form-control" id="nome" required name="nome" placeholder="nome">
                               </div>
                               <div class="form-group col-md-6">
                                 <label for="categoria">Categoria</label>
-                                <select  name="categoria" id="categoria" class="form-control">
+                                <select  name="categoria" id="categoria" required class="form-control">
                                   <option selected>Selecione...</option>
                                   <c:forEach var="c" items="${categoria}">
                                  	<option value="${c.id}">${c.nome}</option>
@@ -98,13 +98,13 @@
                             <div class="form-row"> 
                                 <div class="form-group col-md-12">
                                   <label for="peso">Peso</label>
-                                  <input type="text" class="form-control" name="peso" id="peso" placeholder="Peso">
+                                  <input type="text" class="form-control" name="peso" required id="peso" placeholder="Peso">
                                </div>
                             </div>
                             <div class="form-row">
                               <div class="form-group col-md-12">
                                 <label for="descricao">Descricao</label>
-                                <textarea class="form-control" name="descricao" id="descricao" rows="5">Descricao do produto</textarea>
+                                <textarea class="form-control" name="descricao" id="descricao"  required rows="5">Descricao do produto</textarea>
                               </div>
                             </div> 
                             <div class="form-row">  

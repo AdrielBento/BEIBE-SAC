@@ -19,13 +19,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="components-blog-posts.html">
+                <a class="nav-link " href="Atendimento?action=getAtendimentos">
                   <i class="material-icons">vertical_split</i>
                   <span>Atendimentos</span>
                 </a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link " href="components-blog-posts.html">
+                <a class="nav-link " href="http://localhost:8080/BeibeProject/Atendimento?action=formAtendimento">
                   <i class="material-icons">vertical_split</i>
                   <span>Criar Atendimento</span>
                 </a>

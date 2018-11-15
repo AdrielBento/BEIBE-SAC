@@ -13,6 +13,16 @@ public class TipoAtendimento implements Serializable {
 	}
 
 
+	public TipoAtendimento(Integer id) {
+		this.id = id;
+	}
+
+
+	public TipoAtendimento(String nome) {
+		this.nome = nome;
+	}
+
+
 	public Integer getId() {
 		return id;
 	}

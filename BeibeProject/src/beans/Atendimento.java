@@ -20,6 +20,15 @@ public class Atendimento implements Serializable {
 	}
 
 
+	public Atendimento(String descricao, TipoAtendimento tipo, Produto produto, Usuario usuario) {
+		
+		this.descricao = descricao;
+		this.tipo = tipo;
+		this.produto = produto;
+		this.usuario = usuario;		
+	}
+
+
 	public Integer getId() {
 		return id;
 	}

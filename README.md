@@ -27,21 +27,21 @@
 | Edicao do Dados           |   🛑   |             |
 | Listar Atendimentos       |   ⚙️   |   Adriel    |
 | Visualizao do atendimento |   🛑   |             |
-| Criacao de atendimento    |   ⚙️   |   Adriel    |
+| Criacao de atendimento    |   ✔️   |   Adriel    |
 
 # Funcionario
 
 | Todo                                   | Status | Responsavel |
 | -------------------------------------- | :----: | :---------: |
 | Listagem Atendimentos em Aberto        |   🛑   |             |
-| Listagem Atendimentos                  |   🛑   |             |
+| Listagem Atendimentos                  |   ⚙️   |             |
 | Resolucao do Atendimento               |   🛑   |             |
-| Listagem de Categoria                  |   🛑   |             |
-| Visualizar,alterar e remover Categoria |   🛑   |             |
-| Criar uma categoria                    |   🛑   |             |
-| Listagem de Produto                    |   🛑   |             |
-| Visualizar,alterar e remover Produto   |   🛑   |             |
-| Criar um Produto                       |   🛑   |             |
+| Listagem de Categoria                  |   ✔️   |             |
+| Visualizar,alterar e remover Categoria |   ✔️   |             |
+| Criar uma categoria                    |   ✔️   |             |
+| Listagem de Produto                    |   ✔️   |             |
+| Visualizar,alterar e remover Produto   |   ✔️   |             |
+| Criar um Produto                       |   ✔️   |             |
 
 # Gerente
 

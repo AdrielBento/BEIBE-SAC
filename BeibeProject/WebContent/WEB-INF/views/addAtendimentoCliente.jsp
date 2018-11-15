@@ -64,75 +64,59 @@
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Overview</span>
-                <h3 class="page-title">Categoria</h3>
+                <h3 class="page-title">Atendimento</h3>
               </div>
             </div>
             <!-- End Page Header -->
             <!-- Content -->
             <div class="row">
-              <div class="col-lg-6">
+                <div class="col-lg-12">
                 <div class="card card-small mb-4">
                   <div class="card-header border-bottom">
-                    <h6 class="m-0">Gerencia Categoria</h6>
+                    <h6 class="m-0">Cadastra Atendimento</h6>
                   </div>
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item p-3">
                       <div class="row">
                         <div class="col">
-                          <form id="addCategoria">
+                          <form id="addAtendimento">
                             <div class="form-row">                       
-                            <div class="form-group col-md-12">
-                              <div class="input-group mb-1">
-                                <input type="text" class="form-control" name="nomeCategoria" required placeholder="Nome Categoria" id="nomeCategoria">
-                                <div class="input-group-append">
-                                  <button class="btn btn-accent" type="submit" >Salvar</button>
-                                </div>
-                              </div> 
-                              <div class="cancel-update pointer" style="display:none">cancelar atualizacao</div>                          
-                            </div>                        
+                              <div class="form-group col-md-6">
+                                <label for="tipo">Tipo</label>
+                                <select  name="tipo" id="tipo"  required class="form-control">
+                                  <option value="" disabled selected>Selecione...</option>
+                                  <option value="1">Reclamação</option>
+                                  <option value="2">Crítica</option>
+                                  <option value="3">Sugetão</option>
+                                  <option value="4">Problema</option>
+                                </select>                                
+                             </div>
+
+                              <div class="form-group col-md-6">
+                                <label for="produto">Produtos</label>
+                                <select  name="produto" id="produto" required class="form-control">
+                                  <option value="" disabled selected>Selecione...</option>
+                                  <c:forEach var="p" items="${produtos}">
+                                 	<option value="${p.id}">${p.nome}</option>
+                                  </c:forEach>
+                                </select>
+                             </div>
+                            </div>                         
+                            <div class="form-row">
+                              <div class="form-group col-md-12">
+                                <label for="descricao">Descricao</label>
+                                <textarea class="form-control" name="descricao" required id="descricao" rows="5"></textarea>
+                              </div>
+                            </div> 
+                            <div class="form-row">  
+                              <div class="form-group col-md-6">
+                              <button class="btn btn-accent mr-1" type="submit" >Salvar</button>                               
+                            </div>           
                           </form>
                         </div>
                       </div>
                     </li>
                   </ul>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="card card-small mb-4">
-                  <div class="card-header border-bottom">
-                    <h6 class="m-0">Categorias</h6>
-                  </div>
-                  <div class="card-body p-0 pb-3 text-center">
-                    <table class="table mb-0">
-                      <thead class="bg-light">
-                        <tr>
-                          <th scope="col" class="border-bottom-0">#</th>
-                          <th scope="col" class="border-bottom-0">Nome</th>                        
-                          <th scope="col" class="border-bottom-0">Acao</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-             
-                       <c:set var = "count" scope = "page" value = "1"/>
-                      <c:forEach var="ca" items="${categorias}">
-                         <tr>
-                          <td>${count}</td>
-                          <td id="categoria-nome-${ca.id}">${ca.nome}</td>
-                          <td>
-                            <span class="categoria-remove" data-id="${ca.id}">
-                             <i class="icon-red fas fa-trash-alt"></i>
-                            </span>
-                            <span class="categoria-update pointer" data-id="${ca.id}">
-                              <i class="fas fa-pen"></i>
-                            </span>
-                          </td>                  
-                        </tr>   
-                        <c:set var="count" value="${count + 1}" scope="page"/>  
-                      </c:forEach>
-                               
-                      </tbody>
-                    </table>
-                  </div>
                 </div>
               </div>
             </div>
@@ -145,5 +129,5 @@
 <c:import url="/scripts.jsp" />
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>    
-<script src="js/cadastroCategoria.js"></script>
+<script src="js/cadastroAtendimento.js"></script>
 </html>

@@ -30,6 +30,11 @@ public class Usuario implements Serializable {
 		this.tipo = tipo;
 	}
 
+	public Usuario(Integer id) {
+		this.id = id;
+	}
+
+
 	public Integer getId() {
 		return id;
 	}

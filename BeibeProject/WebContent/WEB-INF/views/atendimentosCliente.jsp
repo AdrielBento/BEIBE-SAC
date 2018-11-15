@@ -4,7 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/sideBar" prefix="sidebar" %>
-<%@page import="beans.Categoria"%>
+<%@page import="beans.Atendimento"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <head>
     <meta charset="UTF-8">
@@ -64,70 +65,48 @@
             <div class="page-header row no-gutters py-4">
               <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
                 <span class="text-uppercase page-subtitle">Overview</span>
-                <h3 class="page-title">Categoria</h3>
+                <h3 class="page-title">Atendimento</h3>
               </div>
             </div>
             <!-- End Page Header -->
             <!-- Content -->
             <div class="row">
-              <div class="col-lg-6">
+                <div class="col-lg-12">
                 <div class="card card-small mb-4">
                   <div class="card-header border-bottom">
-                    <h6 class="m-0">Gerencia Categoria</h6>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item p-3">
-                      <div class="row">
-                        <div class="col">
-                          <form id="addCategoria">
-                            <div class="form-row">                       
-                            <div class="form-group col-md-12">
-                              <div class="input-group mb-1">
-                                <input type="text" class="form-control" name="nomeCategoria" required placeholder="Nome Categoria" id="nomeCategoria">
-                                <div class="input-group-append">
-                                  <button class="btn btn-accent" type="submit" >Salvar</button>
-                                </div>
-                              </div> 
-                              <div class="cancel-update pointer" style="display:none">cancelar atualizacao</div>                          
-                            </div>                        
-                          </form>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="card card-small mb-4">
-                  <div class="card-header border-bottom">
-                    <h6 class="m-0">Categorias</h6>
+                    <h6 class="m-0">Lista de Atendimentos</h6>
                   </div>
                   <div class="card-body p-0 pb-3 text-center">
                     <table class="table mb-0">
                       <thead class="bg-light">
                         <tr>
-                          <th scope="col" class="border-bottom-0">#</th>
-                          <th scope="col" class="border-bottom-0">Nome</th>                        
-                          <th scope="col" class="border-bottom-0">Acao</th>
+                          <th scope="col" class="border-bottom-0">Data</th>
+                          <th scope="col" class="border-bottom-0">Produto</th>                        
+                          <th scope="col" class="border-bottom-0">Tipo</th>
+                          <th scope="col" class="border-bottom-0">Status</th>
+                          <th scope="col" class="border-bottom-0">Acoes</th>
                         </tr>
                       </thead>
-                      <tbody>
-             
-                       <c:set var = "count" scope = "page" value = "1"/>
-                      <c:forEach var="ca" items="${categorias}">
-                         <tr>
-                          <td>${count}</td>
-                          <td id="categoria-nome-${ca.id}">${ca.nome}</td>
-                          <td>
-                            <span class="categoria-remove" data-id="${ca.id}">
-                             <i class="icon-red fas fa-trash-alt"></i>
-                            </span>
-                            <span class="categoria-update pointer" data-id="${ca.id}">
-                              <i class="fas fa-pen"></i>
-                            </span>
-                          </td>                  
-                        </tr>   
-                        <c:set var="count" value="${count + 1}" scope="page"/>  
+                      <tbody>            
+                      
+                      <c:forEach var="a" items="${atendimentos}">                  
+                        <tr>
+                            <td><fmt:formatDate type="both" value="${a.dataHora}" pattern="dd/MM/yyyy HH:mm:ss" /> </td>
+                            <td>${a.produto.nome}</td>
+                            <td>${a.tipo.nome}</td>                            
+                            <td>
+                            <c:choose>
+                            	<c:when test="${a.status == 'N'}">
+                          			<a href="#" class="badge badge-pill badge-danger">${a.status}</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="#" class="badge badge-pill badge-success">${a.status}</a>
+                                </c:otherwise>
+                            </c:choose>
+                            </td>	
+                          
+                            <td>lixo</td>
+                        </tr>
                       </c:forEach>
                                
                       </tbody>
@@ -145,5 +124,5 @@
 <c:import url="/scripts.jsp" />
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>    
-<script src="js/cadastroCategoria.js"></script>
+<script src="js/cadastroAtendimento.js"></script>
 </html>
