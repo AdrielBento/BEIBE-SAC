@@ -8,11 +8,14 @@ import exceptions.ErroAddCategoria;
 
 public class CategoriaFacade {
 
-	public static Categoria addCategoria(ServletRequest req) throws ErroAddCategoria {
+		public static Categoria addCategoria(Categoria categoria) throws ErroAddCategoria {
+		// verify if category is a valid record
+		//
+		// if(categoria.getName().isEmpty()){
+		//	 throw new Exception("Category's name can't be blank. Are you kiding me?!")
+		// }
 		
-		String nome = String.valueOf(req.getParameter("nomeCategoria"));
-		Categoria c = CategoriaDao.addCategoria(new Categoria(nome));		
-		return c;
+		return CategoriaDao.addCategoria(categoria);
 	}
 
 	public static void updateCategoria(ServletRequest req) throws Exception {

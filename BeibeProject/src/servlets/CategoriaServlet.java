@@ -39,8 +39,12 @@ public class CategoriaServlet extends HttpServlet {
 		case "addCategoria":
 
 			try {
-				Categoria categoria = CategoriaFacade.addCategoria(req);
+				String nome = String.valueOf(req.getParameter("nomeCategoria"));
+				Categoria categoria = new Categoria(nome)
+				categoria = CategoriaFacade.addCategoria(categoria);
+
 				json = new Gson().toJson(new Resposta(true, categoria));
+
 			} catch (ErroAddCategoria e) {
 				json = new Gson().toJson(new Resposta(e.getMessage(), false));
 			} finally {
