@@ -4,8 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags/sideBar" prefix="sidebar" %>
-<%@page import="beans.Atendimento"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page import="beans.Categoria"%>
 
 <head>
     <meta charset="UTF-8">
@@ -74,55 +73,68 @@
                 <div class="col-lg-12">
                 <div class="card card-small mb-4">
                   <div class="card-header border-bottom">
-                    <h6 class="m-0">Lista de Atendimentos</h6>
+                    <h6 class="m-0">Cadastra Atendimento</h6>
                   </div>
-                  <div class="card-body p-0 pb-3 text-center">
-                    <table class="table mb-0">
-                      <thead class="bg-light">
-                        <tr>
-                          <th scope="col" class="border-bottom-0">Data</th>
-                          <th scope="col" class="border-bottom-0">Produto</th>                        
-                          <th scope="col" class="border-bottom-0">Tipo</th>
-                          <th scope="col" class="border-bottom-0">Status</th>
-                          <th scope="col" class="border-bottom-0">Acoes</th>
-                        </tr>
-                      </thead>
-                      <tbody>            
-                      
-                      <c:forEach var="a" items="${atendimentos}">                  
-                        <tr>
-                            <td><fmt:formatDate type="both" value="${a.dataHora}" pattern="dd/MM/yyyy HH:mm:ss" /> </td>
-                            <td>${a.produto.nome}</td>
-                            <td>${a.tipo.nome}</td>                            
-                            
-                            <c:choose>
-                            	<c:when test="${a.status == 'F'}">
-                          	    <td><a href="#" class="badge badge-pill badge-danger">Fechado</a></td>	
-                                <td> 
-                                    <span class="produto-view pointer" data-id="${a.id}">
-                                        <i class="fas fa-eye"></i>
-                                    </span>
-                                </td>
-                                </c:when>
-                                <c:otherwise>
-                                <td><a href="#" class="badge badge-pill badge-success">Aberto</a></td>
-                                <td> 
-                                    <span class="atendimento-remove pointer" data-id="${a.id}">
-                                        <i class="icon-red fas fa-trash-alt"></i>
-                                    </span>
-                                    <span class="atendimento-view pointer" data-id="${a.id}">
-                                        <i class="fas fa-eye"></i>
-                                    </span>
-                                </td>
-                                </c:otherwise>
-                            </c:choose>                          
-                         
-                        </tr>
-                      </c:forEach>
-                               
-                      </tbody>
-                    </table>
-                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item p-3">
+                      <div class="row">
+                        <div class="col">
+                          <form id="addAtendimento">
+                            <div class="form-row">                       
+                              <div class="form-group col-md-6">
+                                <label for="tipo">Tipo</label>
+                                <select  name="tipo" id="tipo"  required class="form-control">
+                                  <option value="" disabled selected>Selecione...</option>
+                                  <option value="1">Reclamação</option>
+                                  <option value="2">Crítica</option>
+                                  <option value="3">Sugetão</option>
+                                  <option value="4">Problema</option>
+                                </select>                                
+                             </div>
+
+                              <div class="form-group col-md-6">
+                                <label for="produto">Produtos</label>
+                                <select  name="produto" id="produto" required class="form-control">
+                                  <option value="" disabled selected>Selecione...</option>
+
+                                     <%-- <c:choose>
+                                    <c:when test="">
+                                        <sidebar:cliente id="2" />
+                                    </c:when>
+                                    <c:otherwise>
+                                    </c:otherwise>
+                                    <c:otherwise>
+                                    </c:otherwise>
+                                    </c:choose> --%>
+                                  <c:forEach var="p" items="${produtos}">
+                                 	<option value="${p.id}">${p.nome}</option>
+                                  </c:forEach>
+                                </select>
+                             </div>
+                            </div>                         
+                            <div class="form-row">
+                              <div class="form-group col-md-12">
+                                <label for="descricao">Descrição</label>
+                                <textarea class="form-control" name="descricao" disabled required  rows="5"></textarea>
+                              </div>
+                            </div> 
+                            <div class="form-row">
+                              <div class="form-group col-md-12">
+                                <label for="descricao">Solução</label>
+                                <textarea class="form-control" name="descricao" required   rows="5">${atendimento.descricao}</textarea>                  
+                              </div>
+                            </div> 
+                            <div class="form-row">  
+                              <div class="form-group col-md-6">
+                              <button class="btn btn-accent mr-1" type="submit" >Salvar</button>      
+                              <button class="btn btn-accent mr-1" type="submit" data-id="${atendimento.id}" >Excluir</button>                 
+
+                            </div>           
+                          </form>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -135,5 +147,5 @@
 <c:import url="/scripts.jsp" />
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>    
-<script src="js/atendimentos.js"></script>
+<script src="js/cadastroAtendimento.js"></script>
 </html>
