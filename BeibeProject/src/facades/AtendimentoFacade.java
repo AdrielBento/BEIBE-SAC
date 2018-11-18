@@ -28,5 +28,10 @@ public class AtendimentoFacade {
 		AtendimentoDao.addAtendimento(new Atendimento(status,descricao,tipo,produto,usuario));
 		
 	}
+	
+	public static void getAtendimentoAbertos() {
+		
+	}
+	
 
 }

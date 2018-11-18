@@ -24,7 +24,7 @@ $("#addAtendimento").submit(function (e) {
                 type: "success"
             });
 
-            $(this).reset();
+            $("#addAtendimento").trigger("reset");
 
         } else {
             noty({

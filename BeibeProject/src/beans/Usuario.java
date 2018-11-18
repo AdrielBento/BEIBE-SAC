@@ -13,17 +13,33 @@ public class Usuario implements Serializable {
 	private Endereco endereco;
 	private String tipo;
 
-
-	public Usuario() {
-		
-	};	
-	
+	public Usuario() {};
 			
 	public Usuario(String nome, String cpf, String email, String telefone, String senha, Endereco endereco, String tipo) {
 		
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
+		this.telefone = telefone;
+		this.senha = senha;
+		this.endereco = endereco;
+		this.tipo = tipo;
+	}
+	
+	public Usuario(Integer id,String nome, String cpf, String email, String telefone, String senha, Endereco endereco, String tipo) {
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.telefone = telefone;
+		this.senha = senha;
+		this.endereco = endereco;
+		this.tipo = tipo;
+	}
+
+	public Usuario(Integer id,String nome, String telefone, String senha, Endereco endereco, String tipo) {
+		this.id = id;
+		this.nome = nome;
 		this.telefone = telefone;
 		this.senha = senha;
 		this.endereco = endereco;

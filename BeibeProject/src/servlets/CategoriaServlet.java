@@ -11,25 +11,38 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
 import beans.Categoria;
+import beans.Login;
 import classes.Resposta;
 import dao.CategoriaDao;
 import exceptions.ErroAddCategoria;
-import facades.CategoriaFacade;
+
 
 /**
  * Servlet implementation class CategoriaServlet
  */
-@WebServlet("/CategoriaServlet")
+@WebServlet("/Categoria")
 public class CategoriaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	public void service(ServletRequest req, ServletResponse resp) throws ServletException, IOException {
 
+		HttpSession session = ((HttpServletRequest) req).getSession(true);
+		Login lb = (Login) session.getAttribute("login");
+		
+		if(lb == null) {
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+			rd.forward(req, resp);
+		}else if(!lb.getTipo().equals("F")) {
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/WEB-INF/views/permissao.jsp");
+			rd.forward(req, resp);
+		}
+		
 		String action = req.getParameter("action");
 		String json = "";
 		String path = "";
@@ -40,8 +53,8 @@ public class CategoriaServlet extends HttpServlet {
 
 			try {
 				String nome = String.valueOf(req.getParameter("nomeCategoria"));
-				Categoria categoria = new Categoria(nome)
-				categoria = CategoriaFacade.addCategoria(categoria);
+				Categoria categoria = new Categoria(nome);
+				categoria = CategoriaDao.addCategoria(categoria);
 
 				json = new Gson().toJson(new Resposta(true, categoria));
 
@@ -55,14 +68,14 @@ public class CategoriaServlet extends HttpServlet {
 
 			break;
 
-		case "getCategoria":
+		case "getCategorias":
 
 			try {
 				List<Categoria> listCategoria;
 				listCategoria = CategoriaDao.getCategorias();
 				req.setAttribute("categorias", listCategoria);
 				req.setAttribute("menuActive", 3);
-				path = "/categoria.jsp";
+				path = "/WEB-INF/views/categoria.jsp";
 
 			} catch (Exception e) {
 				req.setAttribute("javax.servlet.jsp.jspException", e);
@@ -75,11 +88,9 @@ public class CategoriaServlet extends HttpServlet {
 
 		case "removeCategoria":
 			try {
+				
 				Integer id = Integer.parseInt(req.getParameter("id"));
-				
-				Categoria categoria = new Categoria(id)
-				CategoriaFacade.removeCategoria(categoria);
-				
+				CategoriaDao.removeCategoria(id);				
 				json = new Gson().toJson(new Resposta(true));
 				
 			} catch (Exception e) {
@@ -99,7 +110,7 @@ public class CategoriaServlet extends HttpServlet {
 				Integer id = Integer.parseInt(req.getParameter("id"));
 				
 				Categoria categoria = new Categoria(id, nome);
-				CategoriaFacade.updateCategoria(categoria);
+				CategoriaDao.updateCategoria(categoria);
 
 				json = new Gson().toJson(new Resposta(true));
 		

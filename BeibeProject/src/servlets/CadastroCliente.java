@@ -23,7 +23,7 @@ import exceptions.ErroAddUsuario;
 import exceptions.ErroCriptografiaSenhaException;
 import exceptions.ErroGetCidades;
 import exceptions.ErroGetEstados;
-import facades.ClienteFacade;
+import facades.UsuarioFacade;
 
 @WebServlet("/CadastroCliente")
 public class CadastroCliente extends HttpServlet {
@@ -35,79 +35,24 @@ public class CadastroCliente extends HttpServlet {
 
 		String action = String.valueOf(req.getParameter("action"));
 		String path = "";
-		String json = "";
 
-		switch (action) {
+		try {
 
-		case "new":
+			List<Estado> listEstado = EstadoDao.getEstados();
+			List<Cidade> listCidade = CidadeDao.getCidades();
 
-			try {
-				ClienteFacade.addCliente(req);
-				json = new Gson().toJson(new Resposta(true));
-			} catch (ErroCriptografiaSenhaException e) {
+			req.setAttribute("cidades", listCidade);
+			req.setAttribute("estados", listEstado);
+			path = "/WEB-INF/views/cadastroCliente.jsp";
 
-				req.setAttribute("javax.servlet.jsp.jspException", e);
-				req.setAttribute("javax.servlet.error.status_code", 500);
-				path = "/erro.jsp";
-
-			} catch (ErroAddUsuario e) {
-
-				json = new Gson().toJson(new Resposta(e.getMessage(),false));
-				resp.setContentType("application/json");
-				resp.setCharacterEncoding("UTF-8");
-				resp.getWriter().write(json);
-			}
-
-			break;
-
-		case "getCidades":
-
-			try {
-
-				Integer idEstado = Integer.parseInt(req.getParameter("idEstado"));
-				List<Cidade> listCidades = CidadeDao.getCidadesEstado(idEstado);
-
-				if (listCidades == null) {
-					throw new ErroGetCidades("Lista de cidade é igual a NULL");
-				} else {
-					json = new Gson().toJson(new Resposta(true, listCidades));
-				}
-
-			} catch (ErroGetCidades e) {
-				json = new Gson().toJson(new Resposta(e.getMessage(),false));
-			} finally {
-
-				resp.setContentType("application/json");
-				resp.setCharacterEncoding("UTF-8");
-				resp.getWriter().write(json);
-			}
-
-			break;
-
-		default:
-
-			try {
-
-				List<Estado> listEstado = EstadoDao.getEstados();
-				List<Cidade> listCidade = CidadeDao.getCidades();
-
-				req.setAttribute("cidades", listCidade);
-				req.setAttribute("estados", listEstado);
-				path = "/WEB-INF/views/cadastroCliente.jsp";
-
-			} catch (ErroGetEstados | ErroGetCidades e) {
-				req.setAttribute("javax.servlet.jsp.jspException", e);
-				req.setAttribute("javax.servlet.error.status_code", 500);
-				path = "/WEB-INF/views/erro.jsp";
-			}
-
-			break;
+		} catch (ErroGetEstados | ErroGetCidades e) {
+			req.setAttribute("javax.servlet.jsp.jspException", e);
+			req.setAttribute("javax.servlet.error.status_code", 500);
+			path = "/WEB-INF/views/erro.jsp";
 		}
-		
-		if(json == "") {
-			RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-			rd.forward(req, resp);			
-		}
+
+		RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+		rd.forward(req, resp);
 
 	}
 

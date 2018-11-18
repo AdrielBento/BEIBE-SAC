@@ -66,6 +66,8 @@ public class ProdutoDao {
 			if (!rs.next()) {
 				throw new ErroAddProduto("A produto não foi inserido");
 			}else {
+				Produto produto = p;
+				produto.setId(rs.getInt(1));
 				return p;
 			}
 			

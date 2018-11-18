@@ -4413,7 +4413,7 @@ a.text-accent:hover, a.text-accent:focus {
     padding-left: 0.9375rem; }
     .stats-small__percentage--increase, .stats-small__percentage--decrease {
       font-size: 0.75rem; }
-      .stats-small__percentage--increase::before, .stats-small__percentage--decrease::before {
+      /* .stats-small__percentage--increase::before, .stats-small__percentage--decrease::before {
         content: "";
         width: 0.75rem;
         height: 0.375rem;
@@ -4422,7 +4422,7 @@ a.text-accent:hover, a.text-accent:focus {
         top: 50%;
         transform: translateY(-50%);
         background-position: center center;
-        background-repeat: no-repeat; }
+        background-repeat: no-repeat; } */
     .stats-small__percentage--increase {
       color: #17c671; }
       .stats-small__percentage--increase::before {

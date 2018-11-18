@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>Produto</title>
     <c:import url="/head.jsp" />            
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
@@ -20,44 +20,12 @@
       <div class="row">
         <!-- Sidebar -->
         <aside class="main-sidebar col-12 col-md-3 col-lg-2 px-0">
-        <%-- <c:choose>
-          <c:when test="">
-           	<sidebar:cliente id="2" />
-          </c:when>
-          <c:otherwise>
-          </c:otherwise>
-          <c:otherwise>
-          </c:otherwise>
-        </c:choose> --%>
-        	<sidebar:cliente id="2" />
+           	<sidebar:funcionario id="4" />
         </aside>
         <!-- End Sidebar -->
         <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
           <!-- Navbar -->
-          <div class="main-navbar sticky-top bg-white">
-          
-            <nav class="navbar align-items-stretch navbar-light flex-md-nowrap p-0">
-              <div action="#" class="main-navbar__search w-100 d-none d-md-flex d-lg-flex">            
-              </div>
-              <ul class="navbar-nav border-left flex-row ">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <%-- <img class="user-avatar rounded-circle mr-2" src="images/avatars/0.jpg" alt="User Avatar"> --%>
-                    <span class="d-none d-md-inline-block">${login.nome}</span>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-small">              
-                    <a class="dropdown-item text-danger" href="#">
-                      <i class="material-icons text-danger">&#xE879;</i> Logout </a>
-                  </div>
-                </li>
-              </ul>
-              <nav class="nav">
-                <a href="#" class="nav-link nav-link-icon toggle-sidebar d-md-inline d-lg-none text-center border-left" data-toggle="collapse" data-target=".header-navbar" aria-expanded="false" aria-controls="header-navbar">
-                  <i class="material-icons">&#xE5D2;</i>
-                </a>
-              </nav>
-            </nav>
-          </div>
+            <c:import url="/navbar.jsp" /> 
           <!-- END Navbar -->
           <div class="main-content-container container-fluid px-4">
             <!-- Page Header -->

@@ -18,7 +18,7 @@ $("#addProduto").submit(function (e) {
   }
 
   $.ajax({
-      url: "ProdutoServlet",
+      url: "Produto",
       data: {
         nome,
         descricao,
@@ -45,8 +45,10 @@ $("#addProduto").submit(function (e) {
         $(`#produto-peso-${idProduto}`).text($("#peso").val());
         $(`#produto-categoria-${idProduto}`).text(nomeCategoria);
         cancelaUpdate();
+        $("#addProduto").trigger("reset");
 
       } else if (res.status) {
+
         let tr = $("<tr>");
         let acoes = `<td><span class="produto-remove pointer" data-id="${res.data.id}"><i class="icon-red fas fa-trash-alt"></i></span>`;
         acoes += `<span class="produto-update pointer" data-id="${res.data.id}"><i class="fas fa-pen"></i></span></td>`;
@@ -64,6 +66,7 @@ $("#addProduto").submit(function (e) {
           text: `✔️ Produto cadastrado`,
           type: "success"
         });
+        $("#addProduto").trigger("reset");
       } else {
         noty({
           text: `😕 Erro ao ${actionMsg}r o Produto`,
@@ -94,7 +97,7 @@ $(document).on("click", ".produto-remove", function (e) {
     .then(willDelete => {
       if (willDelete) {
         return fetch(
-          `http://localhost:8080/BeibeProject/ProdutoServlet?action=removeProduto&id=${idProduto}`
+          `http://localhost:8080/BeibeProject/Produto?action=removeProduto&id=${idProduto}`
         );
       }
     })
@@ -107,6 +110,7 @@ $(document).on("click", ".produto-remove", function (e) {
           title: "Produto Excluido!",
           icon: "success"
         }).then(value => {
+
           $(tr).addClass("animated fadeOutRight");
           setTimeout(function () {
             $(tr).remove();

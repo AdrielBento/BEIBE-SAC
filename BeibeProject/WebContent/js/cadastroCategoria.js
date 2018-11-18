@@ -16,7 +16,7 @@ $("#addCategoria").submit(function (e) {
     }
 
     $.ajax({
-        url: "CategoriaServlet",
+        url: "Categoria",
         data: {
             nomeCategoria,
             action,
@@ -92,7 +92,7 @@ $(document).on("click", ".categoria-remove", function (e) {
     }).then((willDelete) => {
 
         if (willDelete) {
-            return fetch(`http://localhost:8080/BeibeProject/CategoriaServlet?action=removeCategoria&id=${idCategoria}`);
+            return fetch(`http://localhost:8080/BeibeProject/Categoria?action=removeCategoria&id=${idCategoria}`);
         }
 
     }).then(results => {

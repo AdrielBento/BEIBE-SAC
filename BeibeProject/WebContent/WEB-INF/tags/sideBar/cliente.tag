@@ -3,7 +3,7 @@
 
 <div class="main-navbar">
     <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
-      <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
+      <a class="navbar-brand w-100 mr-0" href="Cliente" style="line-height: 25px;">
         <div class="d-table m-auto">
           <img id="main-logo" class="d-inline-block align-top mr-1" style="width: 60px;" src="img/Beibe.svg" alt="Shards Dashboard">
           <%-- <span class="d-none d-md-inline ml-1">Beibe</span> --%>
@@ -19,13 +19,13 @@
       <li class="nav-item">
         <c:choose>
           <c:when test="${id == 1}">
-              <a class="nav-link active" href="index.html">
+              <a class="nav-link active" href="Cliente?action=getCliente">
                <i class="fas fa-user fa-lg"></i>
                 <span>Perfil</span>
               </a>
           </c:when>
           <c:otherwise>
-              <a class="nav-link" href="index.html">
+              <a class="nav-link" href="Cliente?action=getCliente">
                 <i class="fas fa-user fa-lg"></i>
                 <span>Perfil</span>
               </a>
@@ -35,13 +35,13 @@
       <li class="nav-item">
         <c:choose>
           <c:when test="${id == 2}">
-            <a class="nav-link active " href="Atendimento?action=getAtendimentos">
+            <a class="nav-link active " href="Cliente?action=getAtendimentosCliente">
              <i class="fas fa-headset"></i> 
               <span>Atendimentos</span>
             </a>
           </c:when>
           <c:otherwise>
-              <a class="nav-link " href="Atendimento?action=getAtendimentos">
+              <a class="nav-link " href="Cliente?action=getAtendimentosCliente">
                 <i class="fas fa-headset fa-lg"></i>
                 <span>Atendimentos</span>
               </a>
@@ -52,13 +52,13 @@
       <li class="nav-item">
         <c:choose>
           <c:when test="${id == 3}">
-            <a class="nav-link active " href="Atendimento?action=formAtendimento">
+            <a class="nav-link active " href="Cliente?action=formAtendimento">
               <i class="material-icons">vertical_split</i>
               <span>Criar Atendimento</span>
             </a>
           </c:when>
           <c:otherwise>
-            <a class="nav-link " href="Atendimento?action=formAtendimento">
+            <a class="nav-link " href="Cliente?action=formAtendimento">
               <i class="material-icons">vertical_split</i>
               <span>Criar Atendimento</span>
             </a>

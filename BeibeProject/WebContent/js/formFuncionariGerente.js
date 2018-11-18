@@ -4,7 +4,7 @@
     $("#estado").change(function (e) {
 
         let idEstado = $("#estado").val();
-        let url = "CadastroCliente";
+        let url = "Cidade";
         let action = "getCidades";
 
         $.ajax({
@@ -52,27 +52,62 @@
         $("#telefone").mask('(00) 0000-0000');
     }();
 
-    $("#formCadastroCliente").submit(function (e) {
+    $("#formUsuario").submit(function (e) {
+
+        e.preventDefault();
 
         let cpf = $("#cpf").val();
         cpf = cpf.replace(/[^\d]+/g, '');
+        let type = $(this).data("type");
 
         if (!validaCPF(cpf)) {
 
-            e.preventDefault();
-            new Noty({
+            noty({
+                text: " ❌ CPF invalido",
+                type: "error"
+            });
 
-                text: '❌ CPF invalido',
-                type: 'error',
-                timeout: 3500,
-                progressBar: true,
-                theme: "metroui",
-                animation: {
-                    open: 'animated bounceInRight',
-                    close: 'animated bounceOutRight'
+        } else {
+
+
+            let form = $("#formUsuario").serializeArray();
+            let msg = type == "addUsuario" ? "adiciona" : "atualiza";
+
+            form.push({
+                name: "action",
+                value: `${type}`
+            });
+
+            $.ajax({
+                url: "Usuario",
+                data: form,
+                method: "POST",
+                dataType: "json"
+            }).done(function (res) {
+
+                if (res.status) {
+                    noty({
+                        text: `✔️ Usuario ${msg}do`,
+                        type: "success"
+                    });
+
+                } else {
+
+                    noty({
+                        text: `😕 Erro ao ${msg}r Usuario`,
+                        type: "error"
+                    });
                 }
 
-            }).show();
+
+            }).fail(function (jqXHR, textStatus) {
+                console.error(jqXHR, textStatus);
+                noty({
+                    text: " ❌ Ops,ocorreu um erro.Tente novamente",
+                    type: "error"
+                });
+            });
+
         }
     });
 

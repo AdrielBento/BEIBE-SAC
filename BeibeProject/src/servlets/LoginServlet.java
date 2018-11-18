@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 //import com.google.gson.*;
 import com.google.gson.Gson;
 
+import beans.Endereco;
 import beans.Login;
 import beans.Usuario;
 import classes.Resposta;
@@ -30,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 
 		resp.setContentType("text/html;charset=UTF-8");
 		HttpSession session = req.getSession(true);
-		String json = "";
+		String path = "";
 
 		try {
 
@@ -39,25 +40,33 @@ public class LoginServlet extends HttpServlet {
 			if (user == null) {
 				throw new Exception("Usuario não encontrado");
 			}
-			
 
 			Login lb = new Login();
 			lb.setId(user.getId());
+			lb.setEndereco(new Endereco(user.getEndereco().getId()));
 			lb.setNome(user.getNome());
-
+			lb.setTipo(user.getTipo());
 			session.setAttribute("login", lb);
-			
-//			json = new Gson().toJson(new Resposta(true));
+
+			switch (user.getTipo()) {
+			case "C":
+				path = "Cliente";
+				break;
+			case "F":
+				path = "Funcionario";
+				break;
+			case "G":
+				path = "Gerente";
+				break;
+			}
+
+			resp.sendRedirect("http://localhost:8080/BeibeProject/" + path);
 
 		} catch (Exception e) {
-
-			json = new Gson().toJson(new Resposta(e.getMessage(), false));
-
-		} finally {
-
-			resp.setContentType("application/json");
-			resp.setCharacterEncoding("UTF-8");
-			resp.getWriter().write(json);
+			req.setAttribute("message", "Senha ou Email Invalidos.");
+			req.setAttribute("type","error");
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/index.jsp");
+			rd.forward(req, resp);
 		}
 	}
 
