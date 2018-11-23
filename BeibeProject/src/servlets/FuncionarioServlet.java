@@ -95,7 +95,7 @@ public class FuncionarioServlet extends HttpServlet {
 				Integer id = Integer.parseInt(req.getParameter("id"));
 				String solucao = String.valueOf(req.getParameter("solucao"));
 				AtendimentoDao.resolveAtendimento(new Atendimento(id, solucao));
-				path = "/Funcionario";
+//				path = "/Funcionario";
 			} catch (Exception e) {
 				StringWriter writer = new StringWriter();
 				e.printStackTrace(new PrintWriter(writer));//
@@ -120,9 +120,14 @@ public class FuncionarioServlet extends HttpServlet {
 			}
 			break;
 		}
-
-		RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-		rd.forward(req, resp);
+		
+		if(!path.equals("")) {
+			RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
+			rd.forward(req, resp);
+		}else {
+			((HttpServletResponse) resp).sendRedirect("http://localhost:8080/BeibeProject/Funcionario");
+		}
+		
 
 	}
 

@@ -134,6 +134,27 @@ public class GerenteServlet extends HttpServlet {
 			}
 			break;
 			
+		case "viewUsuario":
+			try {
+
+				Integer idUsuario = Integer.parseInt(req.getParameter("id"));
+				Usuario user = UsuarioDao.getUsuario(idUsuario);
+				Integer idEstado = user.getEndereco().getCidade().getEstado().getId();
+				List<Estado> listEstados = EstadoDao.getEstados();
+				List<Cidade> listCidades = CidadeDao.getCidadesEstado(idEstado);
+				req.setAttribute("estados", listEstados);
+				req.setAttribute("cidades", listCidades);
+				req.setAttribute("usuario", user);
+				path = "/WEB-INF/views/viewFuncionarioGerente.jsp";
+			} catch (Exception e) {
+				StringWriter writer = new StringWriter();				
+				e.printStackTrace(new PrintWriter(writer));//			
+				req.setAttribute("ExceptionMessage", e.getMessage());
+				req.setAttribute("stackTrace",writer.toString());
+				path = "/WEB-INF/views/erro.jsp";
+			}
+			break;
+			
 		case "addFuncionarioGerente":
 			try {
 				List<Estado> listEstados = EstadoDao.getEstados();

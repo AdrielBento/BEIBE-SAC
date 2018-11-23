@@ -83,13 +83,13 @@
       <li class="nav-item">
         <c:choose>
           <c:when test="${id == 5}">
-            <a class="nav-link active " href="Gerente?action=getRelatorios">
+            <a class="nav-link active " href="Relatorio">
                 <i class="fas fa-file-contract"></i> 
               <span>Relatorios</span>
             </a>
           </c:when>
           <c:otherwise>
-             <a class="nav-link" href="Gerente?action=getRelatorios">
+             <a class="nav-link" href="Relatorio">
                 <i class="fas fa-file-contract"></i> 
               <span>Relatorios</span>
             </a>

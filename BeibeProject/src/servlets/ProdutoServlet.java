@@ -141,8 +141,7 @@ public class ProdutoServlet extends HttpServlet {
 				List<Categoria> listCategoria = CategoriaDao.getCategorias();
 				List<Produto> listProduto = ProdutoDao.getProdutos();
 				req.setAttribute("produtos", listProduto);
-				req.setAttribute("categoria", listCategoria);
-				req.setAttribute("menuActive", 3);
+				req.setAttribute("categoria", listCategoria);			
 				path = "/WEB-INF/views/produto.jsp";
 
 			} catch (Exception e) {

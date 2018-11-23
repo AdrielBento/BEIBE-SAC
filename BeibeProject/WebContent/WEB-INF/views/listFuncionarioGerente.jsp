@@ -43,7 +43,7 @@
                 <div class="card card-small mb-4">
                   <div class="card-header border-bottom">
                     <h6 class="m-0">
-                      <span>Lista de Atendimentos</span>
+                      <span>Lista de Usuarios</span>
                       <a href="Gerente?action=addFuncionarioGerente" class="mb-2 btn btn-sm btn-outline-success ml-1">
                         <i class="fas fa-user-plus"></i>
                       </a>
@@ -91,9 +91,16 @@
                                     <span class="pointer">
                                         <i class="fas fa-user-edit"></i>
                                     </span>
+                                </a>                                  
+                                <span data-id="${u.id}" class="pointer usuario-remove icon-red">
+                                    <i class="fas fa-trash"></i>
+                                </span>                                
+                                <a href="Gerente?action=viewUsuario&id=${u.id}">
+                                    <span class="pointer">
+                                        <i class="fas fa-eye"></i>
+                                    </span>
                                 </a>
                             </td>
-
                         </tr>
                       </c:forEach>
                                
@@ -102,9 +109,7 @@
                   </div>
                 </div>
               </div>
-            </div>
-          <%-- <footer class="main-footer d-flex p-2 px-3 bg-white border-top">           
-          </footer> --%>
+            </div> 
         </main>
       </div>
     </div>
@@ -112,4 +117,5 @@
 <c:import url="/scripts.jsp" />
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>    
+<script src="js/listFuncionarioGerente.js"></script>
 </html>

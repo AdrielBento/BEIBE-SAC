@@ -29,8 +29,7 @@ $("#addProduto").submit(function (e) {
       },
       method: "POST",
       dataType: "json"
-    })
-    .done(function (res) {
+    }).done(function (res) {
 
       if (id != "" && res.status) {
 

@@ -51,18 +51,15 @@
 | Listagem Atendimentos                            |  ✔️ ️  |   Adriel    |
 | Listagem de funcionarios e gerentes              | ✔️ ️ ️ |   Adriel    |
 | Criar um Funcionario e Gerente                   | ✔️ ️ ️ |   Adriel    |
-| Visualizar,alterar e remover Funcionar e Gerente |   🛑   |   Adriel    |
+| Visualizar,alterar e remover Funcionar e Gerente |  ✔️ ️  |   Adriel    |
 | Relatório de Funcionários                        |   🛑   |   Adriel    |
 | Relatório Listagem Atendimentos em Aberto        |   🛑   |   Adriel    |
 | Relatorio de Atendimentos em Aberto por Data     |   🛑   |   Adriel    |
 | Relatorio de Reclamcoes                          |   🛑   |   Adriel    |
 
+# Querys
+
 # Detalhes
 
 - Excluir produtos ao deletar um categoria
 - Criar exceptions especificas,
-- Arrumar a tela de cadastro de Cliente
-- Redirect para a erro.jsp
-- import do nav
-- Trocar os titles de todos os as jsps
-- Erro ao adicionar funcionar ou gerente

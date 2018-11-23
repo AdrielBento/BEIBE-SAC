@@ -24,7 +24,7 @@ public class AtendimentoDao {
 	private final static String getAtendimentosAbertosQuery =  "SELECT a.id,a.dataHora,p.nome as produto ,t.nome as tipo,a.status FROM tb_atendimento a INNER JOIN tb_produto p on p.id = a.idProduto "
 			+ " INNER JOIN tb_tipoatendimento t on t.id = a.idTipoAtendimento where a.status = 'A' ORDER BY a.dataHora ASC ";
 	private final static String getAtendimentosQuery = "SELECT a.id,a.dataHora,p.nome as produto ,t.nome as tipo,a.status FROM tb_atendimento a INNER JOIN tb_produto p on p.id = a.idProduto "
-			+ " INNER JOIN tb_tipoatendimento t on t.id = a.idTipoAtendimento  ORDER BY a.dataHora ASC";
+			+ " INNER JOIN tb_tipoatendimento t on t.id = a.idTipoAtendimento  ORDER BY a.dataHora DESC";
 	private final static String getAtendimentosClienteQuery = "SELECT a.id,a.dataHora,p.nome as produto ,t.nome as tipo,a.status FROM tb_atendimento a INNER JOIN tb_produto p on p.id = a.idProduto "
 			+ " INNER JOIN tb_tipoatendimento t on t.id = a.idTipoAtendimento where a.idUsuario = ? ORDER BY a.dataHora DESC";
 	private final static String getAtendimentoQuery = "select a.dataHora,a.status,a.id,a.descricao,a.solucao,t.id as tipo,p.id as produto FROM tb_atendimento a"
@@ -256,11 +256,10 @@ public class AtendimentoDao {
 			st.setInt(2,atendimento.getId());
 			Integer rows = st.executeUpdate();
 			
-			if(rows <= 0) {
-				throw new Exception("Atendimento não foi resolvido");
-			}
-			
-		
+//			if(rows <= 0) {
+//				throw new Exception("Atendimento não foi resolvido");
+//			}			
+//		
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		} finally {

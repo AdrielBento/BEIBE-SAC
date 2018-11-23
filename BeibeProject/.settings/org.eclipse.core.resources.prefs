@@ -1,3 +1,4 @@
 eclipse.preferences.version=1
 encoding//src/servlets/LoginServlet.java=UTF-8
 encoding//src/servlets/LogoutServlet.java=UTF-8
+encoding//src/servlets/RelatorioServlet.java=UTF-8

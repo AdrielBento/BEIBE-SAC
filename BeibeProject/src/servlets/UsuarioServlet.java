@@ -9,6 +9,8 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,14 +32,15 @@ import facades.UsuarioFacade;
 @WebServlet("/Usuario")
 public class UsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	@Override
+	public void service(ServletRequest req, ServletResponse resp) throws ServletException, IOException {
 
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		HttpSession session = req.getSession(true);
+		HttpSession session = ((HttpServletRequest) req).getSession(true);
 
 		String action = "", json = "", path = "";
 		Login lb = (Login) session.getAttribute("login");
-		action = req.getParameter("action");
+		action = String.valueOf(req.getParameter("action"));
 
 		switch (action) {
 
@@ -48,12 +51,9 @@ public class UsuarioServlet extends HttpServlet {
 				json = new Gson().toJson(new Resposta(true));
 			} catch (ErroCriptografiaSenhaException e) {
 				json = new Gson().toJson(new Resposta(e.getMessage(), false));
-				resp.setContentType("application/json");
-				resp.setCharacterEncoding("UTF-8");
-				resp.getWriter().write(json);
 			} catch (ErroAddUsuario e) {
-
 				json = new Gson().toJson(new Resposta(e.getMessage(), false));
+			}finally {
 				resp.setContentType("application/json");
 				resp.setCharacterEncoding("UTF-8");
 				resp.getWriter().write(json);
@@ -68,6 +68,7 @@ public class UsuarioServlet extends HttpServlet {
 				json = new Gson().toJson(new Resposta(true));
 			} catch (Exception e) {
 				json = new Gson().toJson(new Resposta(e.getMessage(), false));
+			}finally {
 				resp.setContentType("application/json");
 				resp.setCharacterEncoding("UTF-8");
 				resp.getWriter().write(json);
@@ -95,6 +96,8 @@ public class UsuarioServlet extends HttpServlet {
 				json = new Gson().toJson(new Resposta(true));
 			} catch (Exception e) {
 				json = new Gson().toJson(new Resposta(e.getMessage(), false));
+						
+			}finally {
 				resp.setContentType("application/json");
 				resp.setCharacterEncoding("UTF-8");
 				resp.getWriter().write(json);
@@ -102,11 +105,7 @@ public class UsuarioServlet extends HttpServlet {
 
 			break;
 		}
-
-//		if (json.isEmpty()) {
-//			RequestDispatcher rd = getServletContext().getRequestDispatcher(path);
-//			rd.forward(req, resp);
-//		}
+			
 
 	}
 
